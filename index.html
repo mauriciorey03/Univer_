@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidad de la lleca</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section id="sec-head">
+        <header>
+            <h1>UCity</h1>
+            <p>Coordinador administrativo</p>
+        </header>
+    </section>
+    <section class="opciones">
+        <div class="menu">
+            <h2>Menu</h2>
+            <a href="#sec-estudiantes">Estudiantes</a>
+            <a href="#sec-cursos">Cursos</a>
+        <div>
+        
+    </section>
+    <section id="sec-estudiantes">
+        <a href="#sec-head" class="volver">volver</a>
+        <h1>Carrera: Derecho Industrial</h1>
+        <div class="toggle_btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        
+        <div class="dropdown-menu">
+            <ul>
+                <li><button onclick="openPopup('agregar-estudiante')">Agregar Estudiante</button></li>
+                <li><button onclick="openPopup('eliminar-estudiante')">Eliminar Estudiante</button></li>
+                <li><button onclick="openPopup('modificar-estudiante')">Modificar Estudiante</button> </li>
+                
+            </ul>
+        </div>
+        <!-- AGREGAR ESTUDIANTE-->
+        <div class="popup" id="agregar-estudiante">
+            <div class="contenido">
+                <h2> Agregar estudiante</h2>
+                <p>Nombre</p>
+                <input type="text" id="inputAgregarNombre">
+                <p>Código</p>
+                <input type="number" id="inputAgregarCodigo">
+                <p>Curso</p>
+                <input type="text" id="inputAgregarSemestre"placeholder="toca cambiarlo por un select">
+                <button onclick="agregarEstudiante()" class="btn"> Agregar</button>
+
+                <button class="cerrar btn" onclick="closePopup('agregar-estudiante')"> cerrar</button>
+            </div>
+            
+            
+        </div>
+
+        <!-- ELIMINAR ESTUDIANTE-->
+        <div class="popup" id="eliminar-estudiante" >
+            <div class="contenido">
+                <h2> Eliminar estudiante</h2>
+                <div class="buscar">
+                    <select  id="opciones">
+                        <option value="Nombre" >Nombre</option>
+                        <option value="Codigo" >Codigo</option>
+                        
+                    </select>
+                    <input type="text" id="opcion_a_validar">
+                    <button class="btn" onclick="buscar()">buscar</button>
+                </div>
+                <div>
+                        
+                        <fieldset  style="display: none;" id="mostrar_field">
+                            <legend>ESTUDIANTE</legend>
+                            <div class="resultado_busqueda casillas-none" id="resultado_busqueda">
+                                
+                            </div>
+                                
+                            </div>
+                        </fieldset>
+                
+                <button onclick="eliminarEstudiante()" class="btn">Eliminar</button>
+                <button onclick="closePopup('eliminar-estudiante')" class="btn"> cerrar</button>
+            </div>
+        
+        </div>
+
+        <!--MODIFICAR ESTUDIANTE-->
+
+        <div class="popup" id="modificar-estudiante" >
+            <div class="contenido">
+                <h2> Modificar estudiante</h2>
+                <div class="buscar">
+                    <select  id="opciones_modificar">
+                        <option value="Nombre" >Nombre</option>
+                        <option value="Codigo" >Codigo</option>
+                        
+                    </select>
+                    <input type="text" id="opcion_a_validar_modificar">
+                    <button class="btn" onclick="buscarMod()">buscar</button>
+                </div>
+                <div class="resultado_busqueda casillas-none" id="resultado_busqueda_modificar">
+                       
+                </div>
+                
+                <button onclick="modificarElemento()" class="btn">Modificar</button>
+                <button onclick="closePopup('modificar-estudiante')" class="btn"> cerrar</button>
+            </div>
+        </div>
+        
+        <!--º ESTUDIANTE-->
+        <div class="popup" id="modal_fechas" >
+            <div class="contenido">
+                <h2 id="dia_a_colocar"></h2>
+                
+                <p>Hora Inicio</p>
+                <input type="number" id="hora_a_iniciar">
+                <p>Hora Final</p>
+                <input type="number" id="hora_a_terminar">
+                
+                <button onclick="agregarFecha()" class="btn">Crear</button>
+                <button onclick="closePopup('modal_fechas')" class="btn"> cerrar</button>
+            </div>
+        </div>
+        
+
+        <div id="overlay" id="modal" class="overlay" onclick="closePopup('todos')"></div>
+        <div class="filtros">
+            
+            <fieldset>
+                <legend>Nombre del curso</legend>
+                <input type="text" class="filter" placeholder="ejem: Matematicas">
+            </fieldset>
+            <fieldset>
+                <legend>Nombre del curso</legend>
+                <input type="text" class="filter" placeholder="ejem: Matematicas">
+            </fieldset>
+            <fieldset>
+                <legend>Nombre del curso</legend>
+                <input type="text" class="filter" placeholder="ejem: Matematicas">
+            </fieldset>
+        
+        </div>
+        <button class="listar" onclick="listarEstu()">Listar</button>
+    
+        <table>
+            <colgroup>
+                <col width="100">
+                <col width="100">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+              </colgroup>
+              <tbody id="curso">
+                
+                  <td id="conte">
+
+                  </td>
+            </tbody>
+          </table>
+        
+    </section>
+
+    <section id="sec-cursos">
+
+    </section>
+<script src="main.js"></script>
+
+    
+</body>
+</html>
